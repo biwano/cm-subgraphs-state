@@ -28,18 +28,33 @@ $EVENT protocol CarbonLedger CreditRegisteredForClass $CLASS3 $TOKEN7 [0]
 $EVENT protocol CarbonLedger CreditRegisteredForClass $CLASS3 $TOKEN8 [0]
 $EVENT protocol CarbonLedger CreditUnregisteredForClass $CLASS3 $TOKEN8 [0]
 
-# Stake tokens
-$EVENT protocol KlimaStaking LpStaked 1 $WALLET $KVcmUsdcLP 5$E18 1
-$EVENT protocol KlimaStaking LpStaked 2 $WALLET $KVcmK2LP 6$E18 1
-$EVENT protocol KlimaStaking LpStaked 4 $WALLET $KVcm 8$E18 1
-$EVENT protocol KlimaStaking LpStaked 5 $WALLET $KVcmUsdcLP 4$E18 1
-$EVENT protocol KlimaStaking LpUnstaked 5 $WALLET $KVcmUsdcLP 4$E18
+# Stake tokens bondId user token amount maturityId
+$EVENT protocol KlimaStaking LpStaked 1 $WALLET $KVcmUsdcLP 5$E18 7
+$EVENT protocol KlimaStaking LpStaked 2 $WALLET $KVcmK2LP 6$E18 25
+$EVENT protocol KlimaStaking LpStaked 3 $WALLET $KVcmUsdcLP 4$E18 12
+$EVENT protocol KlimaStaking LpUnstaked 4 $WALLET $KVcmUsdcLP 4$E18
+
+$EVENT protocol KlimaStaking KlimaBonded $WALLET 5 9$E18 $NOW 5
+$EVENT protocol KlimaStaking KlimaBonded $WALLET 6 8$E18 $NOW 12
+$EVENT protocol KlimaStaking KlimaBonded $WALLET 7 7$E18 $NOW 28
+$EVENT protocol KlimaStaking KlimaBonded $WALLET 8 18$E18 $NOW 30
+$EVENT protocol KlimaStaking KlimaUnbonded $WALLET 8 18$E18 0 0
 
 $EVENT protocol KlimaXStaking KlimaXBonded $WALLET 18$E18 1
 $EVENT protocol KlimaXStaking KlimaXUnbondRequested $WALLET 3$E18 1
 
+# Allocate bonds: bondId carbonClass amount
+$EVENT protocol KlimaStaking KlimaBondAllocated 5 $CLASS1 4$E18
+$EVENT protocol KlimaStaking KlimaBondAllocated 5 $CLASS2 5$E18
+$EVENT protocol KlimaStaking KlimaBondAllocated 6 $CLASS2 5$E18
+$EVENT protocol KlimaStaking KlimaBondAllocated 7 $CLASS2 5$E18
+$EVENT protocol KlimaStaking KlimaBondDeallocated 7 $CLASS2 4$E18
+$EVENT protocol KlimaStaking KlimaBondReallocated 6 $CLASS2 $CLASS1 2$E18
+
+
+
 # Add maturities
-START_TS=$(date +%s)
+START_TS=$NOW
 for i in $(seq 1 40); do
   START_TS_OFFSET=$(( (i - 1) * 7776000 ))
   TS=$(( START_TS + START_TS_OFFSET ))
