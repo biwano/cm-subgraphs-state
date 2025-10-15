@@ -51,6 +51,9 @@ $EVENT protocol KlimaStaking KlimaBondAllocated 7 $CLASS2 5$E18
 $EVENT protocol KlimaStaking KlimaBondDeallocated 7 $CLASS2 4$E18
 $EVENT protocol KlimaStaking KlimaBondReallocated 6 $CLASS2 $CLASS1 2$E18
 
+$EVENT protocol KlimaXStaking KlimaXAllocated $WALLET 15$E18 $CLASS1
+$EVENT protocol KlimaXStaking KlimaXDeallocated $WALLET 5$E18 $CLASS1
+$EVENT protocol KlimaXStaking KlimaXReallocated $WALLET 4$E18 $CLASS1 $CLASS2
 
 
 # Add maturities
