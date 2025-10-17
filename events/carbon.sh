@@ -26,6 +26,9 @@ $EVENT carbon TCO2_1_2024 Transfer $ZERO $WHALEWALLET 1000$E18
 $EVENT carbon TCO2_1_2024 Transfer $WHALEWALLET $WALLET 200$E18 
 
 # Retirements
+$EVENT carbon CMARK_1_2025 Retired 50$E18 $WALLET "Me" "message" CMARK-1-2025 $OTHERWALLET "cn"
+
+# Canont test aggregator retirements because calls should be in the same transaction
 #$EVENT carbon RetirementAggregator AggregatorRetired 0 $WALLET "Me" $OTHERWALLET "HIM" "message" $CMARK_1_2025_ADDRESS 0 0 0 50$E18 
 
 

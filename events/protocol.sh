@@ -2,8 +2,10 @@
 # One event per line, e.g.:
 # $EVENT subgraphName datasourceName eventName eventArg1 eventArg2 ...
 
+set -e
 DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 source $DIR/constants.sh
+
 
 # Get tokens
 $EVENT protocol K2 Transfer $ZERO $WALLET 10$E18

@@ -1,3 +1,11 @@
 # Sample events file
 # One event per line, e.g.:
+# Create event:
 # $EVENT subgraphName datasourceName eventName eventArg1 eventArg2 ...
+
+# Deploy template contract and recover address
+# ADDRESS=$($DEPLOY_TEMPLATE  subgraphName templateName alias)
+
+set -e
+
+DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
