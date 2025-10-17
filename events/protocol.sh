@@ -55,6 +55,13 @@ $EVENT protocol KlimaXStaking KlimaXAllocated $WALLET 15$E18 $CLASS1
 $EVENT protocol KlimaXStaking KlimaXDeallocated $WALLET 5$E18 $CLASS1
 $EVENT protocol KlimaXStaking KlimaXReallocated $WALLET 4$E18 $CLASS1 $CLASS2
 
+# Swaps sender to amount0In amount1In amount0Out amount1Out
+$EVENT protocol KVcmUsdcLP Swap $WALLET $OTHERWALLET 10$E18 0 0 100$E18
+$EVENT protocol KVcmK2LP Swap $WALLET $OTHERWALLET 0 40$E18 23$E18 0
+
+# CarbonSwaps carbonClass quoter tokenId tonnageAmount klimaAmount recipient
+$EVENT protocol Operations CarbonSwap $CLASS1 $OTHERWALLET 0 200$E18 195$E18 $WALLET
+
 
 # Add maturities
 START_TS=$NOW
