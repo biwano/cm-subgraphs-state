@@ -7,51 +7,56 @@
         "KlimaStaking": {
           "alias": "KlimaStaking",
           "contractName": "KlimaStaking",
-          "address": "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+          "address": "0x4f30f4449dc9af716e2e326f2444e979fafc619e"
         },
         "KlimaXStaking": {
           "alias": "KlimaXStaking",
           "contractName": "KlimaXStaking",
-          "address": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
+          "address": "0x44729603248c84905f49dd90e3174d47a1b76eb5"
         },
         "CarbonLedger": {
           "alias": "CarbonLedger",
           "contractName": "CarbonLedger",
-          "address": "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0"
+          "address": "0x07f11424ee1905eb79375a6d3ab6c9df8ea4639d"
         },
         "KVcm": {
           "alias": "KVcm",
           "contractName": "KVcm",
-          "address": "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9"
+          "address": "0x00fBAC94Fec8D4089d3fe979F39454F48c71A65d"
         },
         "K2": {
           "alias": "K2",
           "contractName": "K2",
-          "address": "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9"
+          "address": "0x59081d974a0C635Fae3e8195F34f879B591B6519"
         },
         "KVcmK2LP": {
           "alias": "KVcmK2LP",
           "contractName": "KVcmK2LP",
-          "address": "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707"
+          "address": "0x578f2f191C6b67D547bACA166B6B2aa9Dc8CB691"
         },
         "KVcmUsdcLP": {
           "alias": "KVcmUsdcLP",
           "contractName": "KVcmUsdcLP",
-          "address": "0x0165878A594ca255338adfa4d48449f69242Eb8F"
+          "address": "0x5aAdAcac0deDeDd534990Ddc0Ea6565d104B48DE"
         },
         "Operations": {
           "alias": "Operations",
           "contractName": "Operations",
-          "address": "0xa513E6E4b8f2a923D98304ec87F64353C4D5C853"
+          "address": "0x874dc41a94aa0e0dde72e1bf5e3145e5040cffac"
+        },
+        "OperationsFake": {
+          "alias": "OperationsFake",
+          "contractName": "OperationsFake",
+          "address": "0xec043862ed13530dc636eed3a049e971aacc1120"
         },
         "MaturityManager": {
           "alias": "MaturityManager",
           "contractName": "MaturityManager",
-          "address": "0x2279B7A0a67DB372996a5FaB50D91eAA73d2eBe6"
+          "address": "0x651bfbc6cb08c12dec8c58b6877c5b26dcc533c1"
         }
       },
       "active": true,
-      "graphql_url": "http://localhost:8000/subgraphs/id/QmYL3JikweNqVtpJkxCXEFRvJo4oVGQAHxk9ikszjPJFTM"
+      "graphql_url": "http://localhost:8000/subgraphs/id/QmQqbS2ZrBg7To9AoqtLjniV4oj68JLJidL3GCPZuprHYR"
     },
     "carbon": {
       "subgraph_path": "../cm-subgraphs/graphs/carbon/",
@@ -59,46 +64,46 @@
         "CmarkFactory": {
           "alias": "CmarkFactory",
           "contractName": "CmarkFactory",
-          "address": "0x8A791620dd6260079BF849Dc5567aDC3F2FdC318"
+          "address": "0x7d852f5a5b0d5dec9da79fbd2c718bdbdcb86521"
         },
         "CreditManager": {
           "alias": "CreditManager",
           "contractName": "CreditManager",
-          "address": "0x610178dA211FEF7D417bC0e6FeD39F05609AD788"
+          "address": "0x3f4b2c1D9f953D0b4062a28070ef27F8e2Dfdcf9"
         },
         "ToucanBridge": {
           "alias": "ToucanBridge",
           "contractName": "ToucanBridge",
-          "address": "0xB7f8BC63BbcaD18155201308C8f3540b07f84F5e"
+          "address": "0x1A420D7E62Cb0145621dDC6A1e7D8AD447cc92F4"
         },
         "RetirementAggregator": {
           "alias": "RetirementAggregator",
           "contractName": "RetirementAggregator",
-          "address": "0xA51c1fc2f0D1a1b8494Ed1FE312d7C3a78Ed91C0"
+          "address": "0xE8181eeC8a450C0Ba5e1F0A490a881E9E018577d"
         },
         "ToucanCarbonOffsetsFactory": {
           "alias": "ToucanCarbonOffsetsFactory",
           "contractName": "ToucanCarbonOffsetsFactory",
-          "address": "0x0DCd1Bf9A1b36cE34237eEaFef220932846BCD82"
+          "address": "0xa1139082f33e3d11b052a2212bd7b6b4c9c7d60b"
         },
         "PuroToucanCarbonOffsetsFactory": {
           "alias": "PuroToucanCarbonOffsetsFactory",
           "contractName": "PuroToucanCarbonOffsetsFactory",
-          "address": "0x9A676e781A523b5d0C0e43731313A708CB607508"
+          "address": "0xe13f4ce3e7d06a53848abf7a88658ca5f00dbcbd"
         },
         "CMARK_1_2025": {
           "alias": "CMARK_1_2025",
           "contractName": "CreditToken",
-          "address": "0xA4899D35897033b927acFCf422bc745916139776"
+          "address": "0xd519924733e6e1d8e5be4bc0cee6c49221bfbe9c"
         },
         "TCO2_1_2024": {
           "alias": "TCO2_1_2024",
           "contractName": "CreditToken",
-          "address": "0x720472c8ce72c2A2D711333e064ABD3E6BbEAdd3"
+          "address": "0xd519924733e6e1d8e5be4bc0cee6c49221bfbe9c"
         }
       },
       "active": true,
-      "graphql_url": "http://localhost:8000/subgraphs/id/QmZKJukWVjvDgLfmz8YaTTfoZqVKsUqeCr7SAxFTggc4Z4"
+      "graphql_url": "http://localhost:8000/subgraphs/id/QmSabfUkV52x5HPN42FSwR4inJwxw4bpBeVxV4GnpgSbzc"
     }
   }
 }

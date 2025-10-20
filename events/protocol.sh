@@ -64,7 +64,6 @@ $EVENT protocol KVcmK2LP Swap $WALLET $OTHERWALLET 0 40$E18 23$E18 0
 # CarbonSwaps carbonClass quoter tokenId tonnageAmount klimaAmount recipient
 $EVENT protocol Operations CarbonSwap $CLASS1 $OTHERWALLET 0 200$E18 195$E18 $WALLET
 
-
 # Add maturities
 START_TS=$NOW
 for i in $(seq 1 40); do
@@ -72,3 +71,9 @@ for i in $(seq 1 40); do
   TS=$(( START_TS + START_TS_OFFSET ))
   $EVENT protocol MaturityManager MaturityAdded $TS $i
 done
+
+# Call operation blockhandler
+
+$EVENT protocol OperationsFake HandleBlock
+$INCREASE_TIME 86400
+$EVENT protocol OperationsFake HandleBlock
