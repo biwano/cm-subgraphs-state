@@ -51,7 +51,7 @@
         }
       },
       "active": true,
-      "graphql_url": "http://localhost:8000/subgraphs/id/QmVMi3Va17arQUTvFeg5beGyLcydgx5fPN6B7xt1dpeRsz"
+      "graphql_url": "http://localhost:8000/subgraphs/id/QmYL3JikweNqVtpJkxCXEFRvJo4oVGQAHxk9ikszjPJFTM"
     },
     "carbon": {
       "subgraph_path": "../cm-subgraphs/graphs/carbon/",
@@ -89,16 +89,16 @@
         "CMARK_1_2025": {
           "alias": "CMARK_1_2025",
           "contractName": "CreditToken",
-          "address": "0x0B306BF915C4d645ff596e518fAf3F9669b97016"
+          "address": "0xA4899D35897033b927acFCf422bc745916139776"
         },
         "TCO2_1_2024": {
           "alias": "TCO2_1_2024",
           "contractName": "CreditToken",
-          "address": "0x3Aa5ebB10DC797CAC828524e59A333d0A371443c"
+          "address": "0x720472c8ce72c2A2D711333e064ABD3E6BbEAdd3"
         }
       },
       "active": true,
-      "graphql_url": "http://localhost:8000/subgraphs/id/Qmbzxg8GVS9XJf1rzDFg1y1vZo6NzQ5LB7pGwtDNc8bHwL"
+      "graphql_url": "http://localhost:8000/subgraphs/id/QmZKJukWVjvDgLfmz8YaTTfoZqVKsUqeCr7SAxFTggc4Z4"
     }
   }
 }
