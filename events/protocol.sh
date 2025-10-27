@@ -72,8 +72,22 @@ for i in $(seq 1 40); do
   $EVENT protocol MaturityManager MaturityAdded $TS $i
 done
 
-# Call operation blockhandler
+# TokenSnapshots
 
 $EVENT protocol OperationsFake HandleBlock
 $INCREASE_TIME 86400
+
+# Change prices
+$EVENT protocol KVcmUsdcLP Swap $WALLET $OTHERWALLET 15$E18 0 0 100$E18
+$EVENT protocol KVcmK2LP Swap $WALLET $OTHERWALLET 0 35$E18 23$E18 0
+
+# Change supply
+$EVENT protocol K2 Transfer $ZERO $WALLET 3$E18
+$EVENT protocol KVcm Transfer $ZERO $WALLET 4$E18
+
+# change TVL
+$EVENT protocol KlimaStaking KlimaBonded $WALLET 9 2$E18 $NOW 5
+$EVENT protocol KlimaXStaking KlimaXBonded $WALLET 4$E18 1
+
+
 $EVENT protocol OperationsFake HandleBlock

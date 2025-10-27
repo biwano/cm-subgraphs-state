@@ -53,10 +53,15 @@
           "alias": "MaturityManager",
           "contractName": "MaturityManager",
           "address": "0x651bfbc6cb08c12dec8c58b6877c5b26dcc533c1"
+        },
+        "RewardManager": {
+          "alias": "RewardManager",
+          "contractName": "RewardManager",
+          "address": "0xa9aeed1e8c44deec8d59f1be6b97713eb12b0627"
         }
       },
       "active": true,
-      "graphql_url": "http://localhost:8000/subgraphs/id/QmQqbS2ZrBg7To9AoqtLjniV4oj68JLJidL3GCPZuprHYR"
+      "graphql_url": "http://localhost:8000/subgraphs/id/QmSAcRCUgbKE95Rzdkzd1HQun5qfp4shyFsjMwBqupP71T"
     },
     "carbon": {
       "subgraph_path": "../cm-subgraphs/graphs/carbon/",
@@ -84,26 +89,16 @@
         "ToucanCarbonOffsetsFactory": {
           "alias": "ToucanCarbonOffsetsFactory",
           "contractName": "ToucanCarbonOffsetsFactory",
-          "address": "0xa1139082f33e3d11b052a2212bd7b6b4c9c7d60b"
+          "address": "0xd44123b91e9e52b11cc90a8049fd19240cdf3d68"
         },
         "PuroToucanCarbonOffsetsFactory": {
           "alias": "PuroToucanCarbonOffsetsFactory",
           "contractName": "PuroToucanCarbonOffsetsFactory",
           "address": "0xe13f4ce3e7d06a53848abf7a88658ca5f00dbcbd"
-        },
-        "CMARK_1_2025": {
-          "alias": "CMARK_1_2025",
-          "contractName": "CreditToken",
-          "address": "0xd519924733e6e1d8e5be4bc0cee6c49221bfbe9c"
-        },
-        "TCO2_1_2024": {
-          "alias": "TCO2_1_2024",
-          "contractName": "CreditToken",
-          "address": "0xd519924733e6e1d8e5be4bc0cee6c49221bfbe9c"
         }
       },
       "active": true,
-      "graphql_url": "http://localhost:8000/subgraphs/id/QmSabfUkV52x5HPN42FSwR4inJwxw4bpBeVxV4GnpgSbzc"
+      "graphql_url": "http://localhost:8000/subgraphs/id/QmTWJLQi8gbPJ7oq7J7GAaStP6EnTYcimY1nsqJC5GXP7M"
     }
   }
 }
