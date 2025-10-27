@@ -70,6 +70,16 @@ for i in $(seq 1 40); do
   START_TS_OFFSET=$(( (i - 1) * 7776000 ))
   TS=$(( START_TS + START_TS_OFFSET ))
   $EVENT protocol MaturityManager MaturityAdded $TS $i
+
+  # Update yield data
+  MUL=1$E9
+  UNSCALED_BOND_ISSUE=$(( (300 + i) * MUL ))
+  DISCOUNT_FACTOR=$(( (((100 - i) * MUL) / 100) * MUL ))
+  ZERO_COUPON_YIELD_CURVE=$(( (((10 + i) * MUL) / 100) * MUL  ))
+  $EVENT protocol RewardManager UpdateMaturityYieldData 0 [\($i,$ZERO_COUPON_YIELD_CURVE,$DISCOUNT_FACTOR,$UNSCALED_BOND_ISSUE\)]
+  $EVENT protocol RewardManager UpdateMaturityYieldData 1 [\($i,$ZERO_COUPON_YIELD_CURVE,$DISCOUNT_FACTOR,$UNSCALED_BOND_ISSUE\)]
+  $EVENT protocol RewardManager UpdateMaturityYieldData 2 [\($i,$ZERO_COUPON_YIELD_CURVE,$DISCOUNT_FACTOR,$UNSCALED_BOND_ISSUE\)]
+
 done
 
 # TokenSnapshots
