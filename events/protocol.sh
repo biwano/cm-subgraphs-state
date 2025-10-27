@@ -75,12 +75,14 @@ for i in $(seq 1 40); do
   MUL=1$E9
   UNSCALED_BOND_ISSUE=$(( (300 + i) * MUL ))
   DISCOUNT_FACTOR=$(( (((100 - i) * MUL) / 100) * MUL ))
-  ZERO_COUPON_YIELD_CURVE=$(( (((10 + i) * MUL) / 100) * MUL  ))
-  $EVENT protocol RewardManager UpdateMaturityYieldData 0 [\($i,$ZERO_COUPON_YIELD_CURVE,$DISCOUNT_FACTOR,$UNSCALED_BOND_ISSUE\)]
-  $EVENT protocol RewardManager UpdateMaturityYieldData 1 [\($i,$ZERO_COUPON_YIELD_CURVE,$DISCOUNT_FACTOR,$UNSCALED_BOND_ISSUE\)]
-  $EVENT protocol RewardManager UpdateMaturityYieldData 2 [\($i,$ZERO_COUPON_YIELD_CURVE,$DISCOUNT_FACTOR,$UNSCALED_BOND_ISSUE\)]
-
+  ZERO_COUPON_YIELD_CURVE=$(( (((30 + i) * MUL) / 1000) * MUL  ))
+  $EVENT protocol RewardManager UpdateMaturityYieldData 0 [\($i,$DISCOUNT_FACTOR,$ZERO_COUPON_YIELD_CURVE,$UNSCALED_BOND_ISSUE\)]
+  $EVENT protocol RewardManager UpdateMaturityYieldData 1 [\($i,$DISCOUNT_FACTOR,$ZERO_COUPON_YIELD_CURVE,$UNSCALED_BOND_ISSUE\)]
+  $EVENT protocol RewardManager UpdateMaturityYieldData 2 [\($i,$DISCOUNT_FACTOR,$ZERO_COUPON_YIELD_CURVE,$UNSCALED_BOND_ISSUE\)]
 done
+
+$EVENT protocol MaturityManager MaxMaturityIdUpdated 1 40
+
 
 # TokenSnapshots
 
