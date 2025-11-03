@@ -44,14 +44,19 @@
           "contractName": "Operations",
           "address": "0x874dc41a94aa0e0dde72e1bf5e3145e5040cffac"
         },
-        "OperationsFake": {
-          "alias": "OperationsFake",
-          "contractName": "OperationsFake",
-          "address": "0xec043862ed13530dc636eed3a049e971aacc1120"
+        "MaturityManager": {
+          "alias": "MaturityManager",
+          "contractName": "MaturityManager",
+          "address": "0x651bfbc6cb08c12dec8c58b6877c5b26dcc533c1"
+        },
+        "RewardManager": {
+          "alias": "RewardManager",
+          "contractName": "RewardManager",
+          "address": "0xa9aeed1e8c44deec8d59f1be6b97713eb12b0627"
         }
       },
       "active": true,
-      "graphql_url": "http://localhost:8000/subgraphs/id/QmaGTU6AC2EobYFxz9Ecm6zUqQQnRENkujdYY5u5oc9GnP"
+      "graphql_url": "http://localhost:8000/subgraphs/id/QmZd1Y2amQuHYPRdggR94Hf55ipVUZsPwfuKwzRf3CscNQ"
     },
     "carbon": {
       "subgraph_path": "../cm-subgraphs/graphs/carbon/",
@@ -97,8 +102,8 @@
           "address": "0x5b5c4d460273d3100930cd0c0e41194d86373ac6"
         }
       },
-      "active": true,
-      "graphql_url": "http://localhost:8000/subgraphs/id/QmTWJLQi8gbPJ7oq7J7GAaStP6EnTYcimY1nsqJC5GXP7M"
+      "active": false,
+      "graphql_url": "http://localhost:8000/subgraphs/id/QmSwCHn4sDogTp9yDjGUpfE5v7K7U5U7RVERtxPrGKvVeB"
     }
   }
 }

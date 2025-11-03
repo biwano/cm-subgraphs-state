@@ -85,8 +85,6 @@ $EVENT protocol MaturityManager MaxMaturityIdUpdated 1 40
 
 
 # TokenSnapshots
-
-$EVENT protocol OperationsFake HandleBlock
 $INCREASE_TIME 86400
 
 # Change prices
@@ -102,4 +100,3 @@ $EVENT protocol KlimaStaking KlimaBonded $WALLET 9 2$E18 $NOW 5
 $EVENT protocol KlimaXStaking KlimaXBonded $WALLET 4$E18 1
 
 
-$EVENT protocol OperationsFake HandleBlock
