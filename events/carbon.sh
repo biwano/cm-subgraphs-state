@@ -15,7 +15,7 @@ source $DIR/constants.sh
 CMARK_1_2025_ADDRESS=$($DEPLOY_TEMPLATE carbon CmarkCreditToken CMARK_1_2025)
 $EVENT carbon CmarkFactory Issued CMARK-1-2025 1000$E18 $WHALEWALLET $CMARK_1_2025_ADDRESS CMARK-1-2025-PROV
 $EVENT carbon CMARK_1_2025 Transfer $ZERO $WHALEWALLET 1000$E18 
-$EVENT carbon CMARK_1_2025 Transfer $WHALEWALLET $WALLET 200$E18 
+$EVENT carbon CMARK_1_2025 Transfer $WHALEWALLET $WALLET 300$E18 
 
 # Cannot issue toucan credits because of calls to the contract
 

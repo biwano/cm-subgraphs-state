@@ -1,1 +1,1 @@
-graph-node-state-manager state set protocol.sh carbon.sh
+graph-node-state-manager state set carbon.sh protocol.sh 

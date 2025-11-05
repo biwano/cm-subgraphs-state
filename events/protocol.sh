@@ -6,6 +6,9 @@ set -e
 DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 source $DIR/constants.sh
 
+# Get Carbon contract addresses
+TCO2_1_2024_ADDRESS=$($GET_CONTRACT_ADDRESS carbon TCO2_1_2024)
+CMARK_1_2025_ADDRESS=$($GET_CONTRACT_ADDRESS carbon CMARK_1_2025)
 
 # Get tokens
 $EVENT protocol K2 Transfer $ZERO $WALLET 10$E18
@@ -21,12 +24,12 @@ $EVENT protocol CarbonLedger ClassVaultRegistered $CLASS4
 $EVENT protocol CarbonLedger ClassVaultUnregistered $CLASS4
 
 # Register tokens
-$EVENT protocol CarbonLedger CreditRegisteredForClass $CLASS1 $TOKEN1 [0]
-$EVENT protocol CarbonLedger CreditRegisteredForClass $CLASS1 $TOKEN2 [0]
+$EVENT protocol CarbonLedger CreditRegisteredForClass $CLASS1 $TCO2_1_2024_ADDRESS [0]
+$EVENT protocol CarbonLedger CreditRegisteredForClass $CLASS1 $CMARK_1_2025_ADDRESS [0]
 $EVENT protocol CarbonLedger CreditRegisteredForClass $CLASS1 $TOKEN3 [0]
-$EVENT protocol CarbonLedger CreditRegisteredForClass $CLASS2 $TOKEN4 [0]
+$EVENT protocol CarbonLedger CreditRegisteredForClass $CLASS2 $TCO2_1_2024_ADDRESS [0]
 $EVENT protocol CarbonLedger CreditRegisteredForClass $CLASS2 $TOKEN5 [0]
-$EVENT protocol CarbonLedger CreditRegisteredForClass $CLASS3 $TOKEN7 [0]
+$EVENT protocol CarbonLedger CreditRegisteredForClass $CLASS3 $CMARK_1_2025_ADDRESS [0]
 $EVENT protocol CarbonLedger CreditRegisteredForClass $CLASS3 $TOKEN8 [0]
 $EVENT protocol CarbonLedger CreditUnregisteredForClass $CLASS3 $TOKEN8 [0]
 
