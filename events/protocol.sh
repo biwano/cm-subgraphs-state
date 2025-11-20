@@ -34,14 +34,15 @@ $EVENT protocol CarbonLedger CreditRegisteredForClass $CLASS3 $TOKEN8 [0]
 $EVENT protocol CarbonLedger CreditUnregisteredForClass $CLASS3 $TOKEN8 [0]
 
 # Stake tokens bondId user token amount maturityId
-$EVENT protocol KlimaStaking LpStaked $WALLET 7 $KVcmUsdcLP 5$E18
-$EVENT protocol KlimaStaking LpStaked $WALLET 25 $KVcmK2LP 6$E18
+$EVENT protocol KlimaStaking LpStaked $WALLET 1 $KVcmUsdcLP 5$E18
+$EVENT protocol KlimaStaking LpStaked $WALLET 1 $KVcmK2LP 6$E18
+$EVENT protocol KlimaStaking LpStaked $WALLET 9 $KVcmK2LP 6$E18
 $EVENT protocol KlimaStaking LpStakeUpdated $WALLET 25 $KVcmK2LP 6$E18
 $EVENT protocol KlimaStaking LpStaked $WALLET 12 $KVcmUsdcLP 4$E18
 $EVENT protocol KlimaStaking LpStaked $WALLET 12 $KVcmUsdcLP 4$E18
 $EVENT protocol KlimaStaking LpUnstaked $WALLET 12 $KVcmUsdcLP 4$E18
 
-$EVENT protocol KlimaStaking KVCMLocked $WALLET 5 9$E18
+$EVENT protocol KlimaStaking KVCMLocked $WALLET 1 9$E18
 $EVENT protocol KlimaStaking KVCMLocked $WALLET 12 8$E18
 $EVENT protocol KlimaStaking KVCMLocked $WALLET 28 7$E18
 $EVENT protocol KlimaStaking KVCMLocked $WALLET 30 18$E18
@@ -51,7 +52,7 @@ $EVENT protocol KlimaXStaking K2Staked $WALLET 18$E18
 $EVENT protocol KlimaXStaking K2UnstakeRequested $WALLET 3$E18
 
 # Allocate bonds: bondId carbonClass amount
-$EVENT protocol KlimaStaking KVCMLockAllocated $WALLET 5 $CLASS1 4$E18
+$EVENT protocol KlimaStaking KVCMLockAllocated $WALLET 1 $CLASS1 4$E18
 $EVENT protocol KlimaStaking KVCMLockAllocated $WALLET 12 $CLASS2 5$E18
 $EVENT protocol KlimaStaking KVCMLockAllocated $WALLET 28 $CLASS2 5$E18
 $EVENT protocol KlimaStaking KVCMLockDeallocated $WALLET 28 $CLASS2 4$E18
@@ -85,6 +86,19 @@ for i in $(seq 1 40); do
 done
 
 $EVENT protocol MaturityManager MaxMaturityIdUpdated 1 40
+
+# Midnight roll (only maturity 0)
+$EVENT protocol RollUpdate KVCMMaturityRollSettled 1 1 1$E18 2$E18 100$E18
+$EVENT protocol RollUpdate K2YieldDistributedForLPs 1 $KVcmK2LP 1 10 10$E18
+$EVENT protocol RollUpdate K2YieldDistributedForK2 1 15 15$E18
+$EVENT protocol RollUpdate K2YieldDistributedForKVCM 1 1 12 12$E18
+
+$EVENT protocol RollUpdate RiskyYieldDistributedForLPs 1 $KVcmK2LP 1 10 10$E18
+$EVENT protocol RollUpdate RiskyYieldDistributedForLPs 1 $KVcmUsdcLP 1 11 11$E18
+$EVENT protocol RollUpdate RiskyYieldDistributedForK2 1 15 15$E18
+
+# Locks yield shares minting
+$EVENT protocol RewardManager RiskyYieldLPSharesMinted $WALLET 1 1$E18
 
 
 # TokenSnapshots
