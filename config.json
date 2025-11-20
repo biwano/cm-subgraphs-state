@@ -49,6 +49,11 @@
           "contractName": "MaturityManager",
           "address": "0x651bfbc6cb08c12dec8c58b6877c5b26dcc533c1"
         },
+        "RollUpdate": {
+          "alias": "RollUpdate",
+          "contractName": "RollUpdate",
+          "address": "0x434b18ab0c03df5f4c4a22cf591e0bf965c2fc14"
+        },
         "RewardManager": {
           "alias": "RewardManager",
           "contractName": "RewardManager",
@@ -56,7 +61,7 @@
         }
       },
       "active": true,
-      "graphql_url": "http://localhost:8000/subgraphs/id/Qmea7JX9wfJWcPcgXQLZphXoUuv7w7DFqSd1cSuhjiK4sg"
+      "graphql_url": "http://localhost:8000/subgraphs/id/QmNefJFGaCanHrrS5NxJRx9UebqXMisMeuAspi2DtHZaP9"
     },
     "carbon": {
       "subgraph_path": "../cm-subgraphs/graphs/carbon/",
@@ -103,7 +108,7 @@
         }
       },
       "active": true,
-      "graphql_url": "http://localhost:8000/subgraphs/id/QmSwCHn4sDogTp9yDjGUpfE5v7K7U5U7RVERtxPrGKvVeB"
+      "graphql_url": "http://localhost:8000/subgraphs/id/QmV5DJMdxmwTr27utSBULnFYcCkVnmgC6BPLL5TswNpDYu"
     }
   }
 }
