@@ -63,8 +63,8 @@ $EVENT protocol KlimaXStaking K2LockDeallocated $WALLET $CLASS1 5$E18
 $EVENT protocol KlimaXStaking K2LockReallocated $WALLET $CLASS1 $CLASS2 4$E18
 
 # Swaps sender to amount0In amount1In amount0Out amount1Out
-$EVENT protocol KVcmUsdcLP Swap $WALLET $OTHERWALLET 10$E18 0 0 100$E18
-$EVENT protocol KVcmK2LP Swap $WALLET $OTHERWALLET 0 40$E18 23$E18 0
+$EVENT protocol KVcmUsdcLP Swap $WALLET $OTHERWALLET 22$E18 0 0 10$E6
+$EVENT protocol KVcmK2LP Swap $WALLET $OTHERWALLET 0 12$E18 23$E18 0
 
 # CarbonSwaps carbonClass quoter tokenId tonnageAmount klimaAmount recipient
 $EVENT protocol Operations CarbonSwap $CLASS1 $OTHERWALLET 0 200$E18 195$E18 $WALLET
@@ -138,7 +138,7 @@ $EVENT protocol RewardManager K2YieldForKVCMClaimed $WALLET 2 4$E18
 $INCREASE_TIME 86400
 
 # Change prices
-$EVENT protocol KVcmUsdcLP Swap $WALLET $OTHERWALLET 15$E18 0 0 100$E18
+$EVENT protocol KVcmUsdcLP Swap $WALLET $OTHERWALLET 15$E18 0 0 10$E6
 $EVENT protocol KVcmK2LP Swap $WALLET $OTHERWALLET 0 35$E18 23$E18 0
 
 # Change supply

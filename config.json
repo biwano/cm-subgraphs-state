@@ -61,7 +61,7 @@
         }
       },
       "active": true,
-      "graphql_url": "http://localhost:8000/subgraphs/id/QmNnV8Hr4CHD999mkgCEVkoAgZJfrhnk65YB8S69nVm5yM"
+      "graphql_url": "http://localhost:8000/subgraphs/id/QmeCa2TaqxzEHWmjTatWD7YoBbcpzE8zaRiwx57JgxNkyt"
     },
     "carbon": {
       "subgraph_path": "../cm-subgraphs/graphs/carbon/",
@@ -108,7 +108,7 @@
         }
       },
       "active": true,
-      "graphql_url": "http://localhost:8000/subgraphs/id/QmV5DJMdxmwTr27utSBULnFYcCkVnmgC6BPLL5TswNpDYu"
+      "graphql_url": "http://localhost:8000/subgraphs/id/QmdEKs5RLVSGyKCFxAD1bbRQM2W3y3eCPubykobJHAFw6a"
     }
   }
 }
