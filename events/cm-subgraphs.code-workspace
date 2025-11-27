@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../../cm-subgraphs"
+		},
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../graph-node-state-manager"
+		}
+	],
+	"settings": {}
+}

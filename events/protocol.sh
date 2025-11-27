@@ -97,8 +97,41 @@ $EVENT protocol RollUpdate RiskyYieldDistributedForLPs 1 $KVcmK2LP 1 10 10$E18
 $EVENT protocol RollUpdate RiskyYieldDistributedForLPs 1 $KVcmUsdcLP 1 11 11$E18
 $EVENT protocol RollUpdate RiskyYieldDistributedForK2 1 15 15$E18
 
-# Locks yield shares minting
-$EVENT protocol RewardManager RiskyYieldLPSharesMinted $WALLET 1 1$E18
+# Shares minting maturity 1
+$EVENT protocol RewardManager RiskyYieldLPSharesMinted $WALLET 1 $KVcmK2LP 1 10 3$E18
+$EVENT protocol RewardManager K2YieldLPSharesMinted $WALLET 1 $KVcmK2LP 1 10 3$E18
+
+$EVENT protocol RewardManager RiskyYieldLPSharesMinted $WALLET 1 $KVcmUsdcLP 1 10 3$E18
+
+$EVENT protocol RewardManager RiskyYieldK2SharesMinted $WALLET 1 12 4$E18
+$EVENT protocol RewardManager K2YieldK2SharesMinted $WALLET 1 12 4$E18
+
+$EVENT protocol RewardManager SyntheticYieldForKVCMMinted $WALLET 1 1 6$E18 
+$EVENT protocol RewardManager K2YieldForKVCMMinted $WALLET 1 1 15 5$E18
+
+# Shares minting maturity 2
+$EVENT protocol KlimaStaking LpStaked $WALLET 1 $KVcmK2LP 600$E18
+$EVENT protocol RewardManager RiskyYieldLPSharesMinted $WALLET 2 $KVcmK2LP 1 10 13$E18
+$EVENT protocol RewardManager K2YieldLPSharesMinted $WALLET 2 $KVcmK2LP 1 10 13$E18
+
+$EVENT protocol KlimaStaking LpStaked $WALLET 1 $KVcmUsdcLP 500$E18
+$EVENT protocol RewardManager RiskyYieldLPSharesMinted $WALLET 2 $KVcmUsdcLP 1 10 15$E18
+
+$EVENT protocol KlimaStaking KVCMLocked $WALLET 2 900$E18
+$EVENT protocol RewardManager SyntheticYieldForKVCMMinted $WALLET 2 1 15$E18
+$EVENT protocol RewardManager K2YieldForKVCMMinted $WALLET 2 1 15 14$E18
+
+# Shares claiming (maturity)
+$EVENT protocol RewardManager RiskyYieldForLPClaimed $WALLET 2 $KVcmK2LP 1$E18
+$EVENT protocol RewardManager K2YieldForLPClaimed $WALLET 2 $KVcmK2LP 10$E18
+
+$EVENT protocol RewardManager RiskyYieldForLPClaimed $WALLET 2 $KVcmUsdcLP 1$E18
+
+$EVENT protocol RewardManager RiskyYieldForK2Claimed $WALLET 2$E18
+$EVENT protocol RewardManager K2YieldForK2Claimed $WALLET 3$E18
+
+$EVENT protocol RewardManager SyntheticYieldForKVCMClaimed $WALLET 2 1$E18
+$EVENT protocol RewardManager K2YieldForKVCMClaimed $WALLET 2 4$E18
 
 
 # TokenSnapshots
