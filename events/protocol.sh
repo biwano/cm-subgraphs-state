@@ -68,6 +68,9 @@ $EVENT protocol KVcmK2LP Swap $WALLET $OTHERWALLET 0 12$E18 23$E18 0
 
 # CarbonSwaps carbonClass quoter tokenId tonnageAmount klimaAmount recipient
 $EVENT protocol Operations CarbonSwap $CLASS1 $OTHERWALLET 0 200$E18 195$E18 $WALLET
+$EVENT protocol Operations CarbonSwap $CLASS2 $OTHERWALLET 0 200$E18 155$E18 $WALLET
+$EVENT protocol Operations CarbonSwap $CLASS3 $OTHERWALLET 0 200$E18 312$E18 $WALLET
+$EVENT protocol Operations CarbonSwap $CLASS4 $OTHERWALLET 0 200$E18 40155$E18 $WALLET
 
 # Add maturities
 START_TS=$NOW
@@ -134,7 +137,7 @@ $EVENT protocol RewardManager SyntheticYieldForKVCMClaimed $WALLET 2 1$E18
 $EVENT protocol RewardManager K2YieldForKVCMClaimed $WALLET 2 4$E18
 
 
-# TokenSnapshots
+######### TokenSnapshots #########
 $INCREASE_TIME 86400
 
 # Change prices
@@ -149,4 +152,8 @@ $EVENT protocol KVcm Transfer $ZERO $WALLET 4$E18
 $EVENT protocol KlimaStaking KVCMLocked $WALLET 9 2$E18
 $EVENT protocol KlimaXStaking K2Staked $WALLET 4$E18
 
-
+# CarbonSwaps carbonClass quoter tokenId tonnageAmount klimaAmount recipient
+$EVENT protocol Operations CarbonSwap $CLASS1 $OTHERWALLET 0 200$E18 200$E18 $WALLET
+$EVENT protocol Operations CarbonSwap $CLASS2 $OTHERWALLET 0 200$E18 180$E18 $WALLET
+$EVENT protocol Operations CarbonSwap $CLASS3 $OTHERWALLET 0 200$E18 300$E18 $WALLET
+$EVENT protocol Operations CarbonSwap $CLASS4 $OTHERWALLET 0 200$E18 30155$E18 $WALLET
