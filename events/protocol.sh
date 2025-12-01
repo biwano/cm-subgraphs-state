@@ -92,7 +92,7 @@ $EVENT protocol MaturityManager MaxMaturityIdUpdated 1 40
 
 # Midnight roll maturity 1 - midnight 1
 $EVENT protocol RollUpdate KVCMMaturityRollSettled 1 1 1$E18 2000000000$E9 100$E18
-$EVENT protocol RollUpdate K2YieldDistributedForLPs 1 $KVcmK2LP 1 1 1000000000$E9 10$E18
+$EVENT protocol RollUpdate K2YieldDistributedForLPs 1 $KVcmK2LP 1 1000000000$E9 10$E18
 $EVENT protocol RollUpdate K2YieldDistributedForK2 1 1000000000$E9 15$E18
 $EVENT protocol RollUpdate K2YieldDistributedForKVCM 1 1 1000000000$E9 12$E18
 
