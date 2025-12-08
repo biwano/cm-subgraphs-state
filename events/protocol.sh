@@ -72,6 +72,13 @@ $EVENT protocol Operations CarbonSwap $CLASS2 $OTHERWALLET 0 200$E18 155$E18 $WA
 $EVENT protocol Operations CarbonSwap $CLASS3 $OTHERWALLET 0 200$E18 312$E18 $WALLET
 $EVENT protocol Operations CarbonSwap $CLASS4 $OTHERWALLET 0 200$E18 40155$E18 $WALLET
 
+# Pause staking
+
+$EVENT protocol StakingManagerPause SystemPauseStatusChanged false
+$EVENT protocol StakingManagerPause KvcmStakingPauseStatusChanged false
+$EVENT protocol StakingManagerPause K2StakingPauseStatusChanged true
+$EVENT protocol StakingManagerPause LpStakingPauseStatusChanged false
+
 # Add maturities
 START_TS=$NOW
 for i in $(seq 1 40); do

@@ -58,10 +58,15 @@
           "alias": "RewardManager",
           "contractName": "RewardManager",
           "address": "0xa9aeed1e8c44deec8d59f1be6b97713eb12b0627"
+        },
+        "StakingManagerPause": {
+          "alias": "StakingManagerPause",
+          "contractName": "StakingManagerPause",
+          "address": "0x7d24a3c2fccf69c1decfc21e2c5ca03b28291a74"
         }
       },
       "active": true,
-      "graphql_url": "http://localhost:8000/subgraphs/id/QmPPhnXL4Gzdt8NcDegFXpYscwihRxCWTRtN99NGdovGov"
+      "graphql_url": "http://localhost:8000/subgraphs/id/QmPm4i2DprnZWwXJaGNcrriSgBruZyzSBtL1iAufmYeFVr"
     },
     "carbon": {
       "subgraph_path": "../cm-subgraphs/graphs/carbon/",
