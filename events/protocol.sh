@@ -80,10 +80,15 @@ $EVENT protocol StakingManagerPause K2StakingPauseStatusChanged true
 $EVENT protocol StakingManagerPause LpStakingPauseStatusChanged false
 
 # Add maturities
-START_TS=$NOW
+NINETY_DAYS=$(( 90 * 24 * 60 * 60))
+
+# 0
+MATURITY_0_TS=$(( $NOW - 92 * 24 * 60 * 60))
+$EVENT protocol MaturityManager MaturityAdded $MATURITY_0_TS 0
+
+# 1-40
 for i in $(seq 1 40); do
-  START_TS_OFFSET=$(( (i - 1) * 7776000 ))
-  TS=$(( START_TS + START_TS_OFFSET ))
+  TS=$(( MATURITY_0_TS + NINETY_DAYS * i ))
   $EVENT protocol MaturityManager MaturityAdded $TS $i
 
   # Update yield data
@@ -97,26 +102,35 @@ done
 
 $EVENT protocol MaturityManager MaxMaturityIdUpdated 1 40
 
-# Midnight roll maturity 1 - midnight 1
-$EVENT protocol RollUpdate KVCMMaturityRollSettled 1 1 1$E18 2000000000$E9 100$E18
-$EVENT protocol RollUpdate K2YieldDistributedForLPs 1 $KVcmK2LP 1 1000000000$E9 10$E18
-$EVENT protocol RollUpdate K2YieldDistributedForK2 1 1000000000$E9 15$E18
-$EVENT protocol RollUpdate K2YieldDistributedForKVCM 1 1 1000000000$E9 12$E18
+# Midnight roll maturity 1 - midnight 89
+$EVENT protocol RollUpdate KVCMMaturityRollSettled 1 89 1$E18 2000000000$E9 100$E18
+$EVENT protocol RollUpdate K2YieldDistributedForLPs 1 $KVcmK2LP 89 1000000000$E9 10$E18
+$EVENT protocol RollUpdate K2YieldDistributedForK2 89 1000000000$E9 15$E18
+$EVENT protocol RollUpdate K2YieldDistributedForKVCM 1 89 1000000000$E9 12$E18
 
-$EVENT protocol RollUpdate RiskyYieldDistributedForLPs 1 $KVcmK2LP 1 1000000000$E9 10$E18
-$EVENT protocol RollUpdate RiskyYieldDistributedForLPs 1 $KVcmUsdcLP 1 1000000000$E9 11$E18
-$EVENT protocol RollUpdate RiskyYieldDistributedForK2 1 1000000000$E9 15$E18
+$EVENT protocol RollUpdate RiskyYieldDistributedForLPs 1 $KVcmK2LP 89 1000000000$E9 10$E18
+$EVENT protocol RollUpdate RiskyYieldDistributedForLPs 1 $KVcmUsdcLP 89 1000000000$E9 11$E18
+$EVENT protocol RollUpdate RiskyYieldDistributedForK2 89 1000000000$E9 15$E18
 
-# Midnight roll maturity 1 - midnight 2
-$EVENT protocol RollUpdate KVCMMaturityRollSettled 1 2 1$E18 2000100000$E9 100$E18
-$EVENT protocol RollUpdate K2YieldDistributedForLPs 1 $KVcmK2LP 2 1000110000$E9 10$E18
-$EVENT protocol RollUpdate K2YieldDistributedForK2 2 1000120000$E9 15$E18
-$EVENT protocol RollUpdate K2YieldDistributedForKVCM 1 2 1000130000$E9 12$E18
+# Midnight roll maturity 1 - midnight 90 = maturity 1 ends
+$EVENT protocol RollUpdate KVCMMaturityRollSettled 1 90 1$E18 2000100000$E9 100$E18
+$EVENT protocol RollUpdate K2YieldDistributedForLPs 1 $KVcmK2LP 90 1000110000$E9 10$E18
+$EVENT protocol RollUpdate K2YieldDistributedForK2 90 1000120000$E9 15$E18
+$EVENT protocol RollUpdate K2YieldDistributedForKVCM 1 90 1000130000$E9 12$E18
 
-$EVENT protocol RollUpdate RiskyYieldDistributedForLPs 1 $KVcmK2LP 2 1000100000$E9 10$E18
-$EVENT protocol RollUpdate RiskyYieldDistributedForLPs 1 $KVcmUsdcLP 2 1000200000$E9 11$E18
-$EVENT protocol RollUpdate RiskyYieldDistributedForK2 2 1000300000$E9 15$E18
+$EVENT protocol RollUpdate RiskyYieldDistributedForLPs 1 $KVcmK2LP 90 1000100000$E9 10$E18
+$EVENT protocol RollUpdate RiskyYieldDistributedForLPs 1 $KVcmUsdcLP 90 1000200000$E9 11$E18
+$EVENT protocol RollUpdate RiskyYieldDistributedForK2 90 1000300000$E9 15$E18
 
+# Midnight roll maturity 1 - midnight 91 = Another one so midnight 90 is not latest
+$EVENT protocol RollUpdate KVCMMaturityRollSettled 1 91 1$E18 2000200000$E9 100$E18
+$EVENT protocol RollUpdate K2YieldDistributedForLPs 1 $KVcmK2LP 91 1000220000$E9 10$E18
+$EVENT protocol RollUpdate K2YieldDistributedForK2 91 1000230000$E9 15$E18
+$EVENT protocol RollUpdate K2YieldDistributedForKVCM 1 91 1000230000$E9 12$E18
+
+$EVENT protocol RollUpdate RiskyYieldDistributedForLPs 1 $KVcmK2LP 91 1000200000$E9 10$E18
+$EVENT protocol RollUpdate RiskyYieldDistributedForLPs 1 $KVcmUsdcLP 91 1000400000$E9 11$E18
+$EVENT protocol RollUpdate RiskyYieldDistributedForK2 91 1000600000$E9 15$E18
 
 # Shares minting maturity 1
 $EVENT protocol RewardManager RiskyYieldLPSharesMinted $WALLET 1 $KVcmK2LP 1 10 3$E18
