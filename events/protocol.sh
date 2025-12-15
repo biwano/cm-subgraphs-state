@@ -13,7 +13,7 @@ CMARK_1_2025_ADDRESS=$($GET_CONTRACT_ADDRESS carbon CMARK_1_2025)
 # Get tokens
 $EVENT protocol K2 Transfer $ZERO $WALLET 10$E18
 $EVENT protocol KVcm Transfer $ZERO $WALLET 10$E18
-$EVENT protocol KVcmUsdcLP Transfer $ZERO $WALLET 10$E18
+$EVENT protocol KVcmUsdcLP Transfer $ZERO $WALLET 10$E12
 $EVENT protocol KVcmK2LP Transfer $ZERO $WALLET 10$E18
 
 # Create classes
@@ -34,13 +34,13 @@ $EVENT protocol CarbonLedger CreditRegisteredForClass $CLASS3 $TOKEN8 [0]
 $EVENT protocol CarbonLedger CreditUnregisteredForClass $CLASS3 $TOKEN8 [0]
 
 # Stake tokens bondId user token amount maturityId
-$EVENT protocol KlimaStaking LpStaked $WALLET 1 $KVcmUsdcLP 5$E18
+$EVENT protocol KlimaStaking LpStaked $WALLET 1 $KVcmUsdcLP 5$E12
 $EVENT protocol KlimaStaking LpStaked $WALLET 1 $KVcmK2LP 6$E18
 $EVENT protocol KlimaStaking LpStaked $WALLET 9 $KVcmK2LP 6$E18
 $EVENT protocol KlimaStaking LpStakeUpdated $WALLET 25 $KVcmK2LP 6$E18
-$EVENT protocol KlimaStaking LpStaked $WALLET 12 $KVcmUsdcLP 4$E18
-$EVENT protocol KlimaStaking LpStaked $WALLET 12 $KVcmUsdcLP 4$E18
-$EVENT protocol KlimaStaking LpUnstaked $WALLET 12 $KVcmUsdcLP 4$E18
+$EVENT protocol KlimaStaking LpStaked $WALLET 12 $KVcmUsdcLP 4$E12
+$EVENT protocol KlimaStaking LpStaked $WALLET 12 $KVcmUsdcLP 4$E12
+$EVENT protocol KlimaStaking LpUnstaked $WALLET 12 $KVcmUsdcLP 4$E12
 
 $EVENT protocol KlimaStaking KVCMLocked $WALLET 1 9$E18
 $EVENT protocol KlimaStaking KVCMLocked $WALLET 12 8$E18
@@ -154,7 +154,7 @@ $EVENT protocol KlimaStaking LpStaked $WALLET $MATURITY $KVcmK2LP 600$E18
 $EVENT protocol RewardManager RiskyYieldLPSharesMinted $WALLET $MATURITY $KVcmK2LP $MIDNIGHT 10$E18 13$E18
 $EVENT protocol RewardManager K2YieldLPSharesMinted $WALLET $MATURITY $KVcmK2LP $MIDNIGHT 10$E18 13$E18
 
-$EVENT protocol KlimaStaking LpStaked $WALLET $MATURITY $KVcmUsdcLP 500$E18
+$EVENT protocol KlimaStaking LpStaked $WALLET $MATURITY $KVcmUsdcLP 500$E12
 $EVENT protocol RewardManager RiskyYieldLPSharesMinted $WALLET $MATURITY $KVcmUsdcLP $MIDNIGHT 10$E18 15$E18
 
 $EVENT protocol KlimaStaking KVCMLocked $WALLET 2 900$E18
