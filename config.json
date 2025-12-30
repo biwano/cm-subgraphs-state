@@ -3,16 +3,32 @@
   "subgraphs": {
     "protocol": {
       "subgraph_path": "../cm-subgraphs/graphs/protocol/",
+      "shouldNotUseTemplateAddress": [
+        "KvcmStaking",
+        "KvcmLPStaking",
+        "K2Staking",
+        "CarbonLedger",
+        "Operations",
+        "MaturityManager",
+        "RollUpdate",
+        "RewardManager",
+        "StakingManagerPause"
+      ],
       "contracts": {
-        "KlimaStaking": {
-          "alias": "KlimaStaking",
-          "contractName": "KlimaStaking",
-          "address": "0x4f30f4449dc9af716e2e326f2444e979fafc619e"
+        "KvcmStaking": {
+          "alias": "KvcmStaking",
+          "contractName": "KvcmStaking",
+          "address": "0x2f900ec0e59f1f9854235d9e413ee6be9ae1ed16"
         },
-        "KlimaXStaking": {
-          "alias": "KlimaXStaking",
-          "contractName": "KlimaXStaking",
-          "address": "0x44729603248c84905f49dd90e3174d47a1b76eb5"
+        "KvcmLPStaking": {
+          "alias": "KvcmLPStaking",
+          "contractName": "KvcmLPStaking",
+          "address": "0x3830f068a498d535ea802a97a020e41213c98867"
+        },
+        "K2Staking": {
+          "alias": "K2Staking",
+          "contractName": "K2Staking",
+          "address": "0x929219d326d8dde03d1a2d54bab8a20595490e47"
         },
         "CarbonLedger": {
           "alias": "CarbonLedger",
@@ -22,22 +38,22 @@
         "KVcm": {
           "alias": "KVcm",
           "contractName": "KVcm",
-          "address": "0x00fBAC94Fec8D4089d3fe979F39454F48c71A65d"
+          "address": "0x4231968b210489379BB40f1C2e6275978477094b"
         },
         "K2": {
           "alias": "K2",
           "contractName": "K2",
-          "address": "0x59081d974a0C635Fae3e8195F34f879B591B6519"
+          "address": "0xDBaeE9Af470913Ba360379817661C836d8657ebD"
         },
         "KVcmK2LP": {
           "alias": "KVcmK2LP",
           "contractName": "KVcmK2LP",
-          "address": "0x578f2f191C6b67D547bACA166B6B2aa9Dc8CB691"
+          "address": "0xB888e0c1299C2A002E5b53fD15AC36FedA1320aF"
         },
         "KVcmUsdcLP": {
           "alias": "KVcmUsdcLP",
           "contractName": "KVcmUsdcLP",
-          "address": "0x5aAdAcac0deDeDd534990Ddc0Ea6565d104B48DE"
+          "address": "0x978b80D755E7eEC07667118151b084CD192DAa2e"
         },
         "Operations": {
           "alias": "Operations",
@@ -66,7 +82,7 @@
         }
       },
       "active": true,
-      "graphql_url": "http://localhost:8000/subgraphs/id/QmRLwXdnC2QbeWKyKEXFrVYeTYNxWzmR8tWPzCvJHSNHF6"
+      "graphql_url": "http://localhost:8000/subgraphs/id/QmeVnsFAkZUfpPG4dFHUmRB5ZLj9cqQLnipMnKKfsTjR5y"
     },
     "carbon": {
       "subgraph_path": "../cm-subgraphs/graphs/carbon/",
@@ -104,7 +120,7 @@
         "CMARK_1_2025": {
           "alias": "CMARK_1_2025",
           "contractName": "CmarkCreditToken",
-          "address": "0x5bdc4ce66c2f376c6df42e6e64bf30a27b0f4765"
+          "address": "0xc87c66a5aa13c9a26be8cbedbb9b3d0da950296e"
         },
         "TCO2_1_2024": {
           "alias": "TCO2_1_2024",
@@ -113,7 +129,7 @@
         }
       },
       "active": true,
-      "graphql_url": "http://localhost:8000/subgraphs/id/QmcjQUuzcUtgborrd1MmJ8bSGeTCF6pZoSNq8xEKHJ8Zxm"
+      "graphql_url": "http://localhost:8000/subgraphs/id/QmRTRjUyMcoXqYUyBm95FU69v7wZJeayHUBNAiFG9whDbj"
     }
   }
 }

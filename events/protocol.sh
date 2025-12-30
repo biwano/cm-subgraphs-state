@@ -34,33 +34,33 @@ $EVENT protocol CarbonLedger CreditRegisteredForClass $CLASS3 $TOKEN8 [0]
 $EVENT protocol CarbonLedger CreditUnregisteredForClass $CLASS3 $TOKEN8 [0]
 
 # Stake tokens bondId user token amount maturityId
-$EVENT protocol KlimaStaking LpStaked $WALLET 1 $KVcmUsdcLP 5$E12
-$EVENT protocol KlimaStaking LpStaked $WALLET 1 $KVcmK2LP 6$E18
-$EVENT protocol KlimaStaking LpStaked $WALLET 9 $KVcmK2LP 6$E18
-$EVENT protocol KlimaStaking LpStakeUpdated $WALLET 25 $KVcmK2LP 6$E18
-$EVENT protocol KlimaStaking LpStaked $WALLET 12 $KVcmUsdcLP 4$E12
-$EVENT protocol KlimaStaking LpStaked $WALLET 12 $KVcmUsdcLP 4$E12
-$EVENT protocol KlimaStaking LpUnstaked $WALLET 12 $KVcmUsdcLP 4$E12
+$EVENT protocol KvcmLPStaking LpStaked $KVcmUsdcLP 1 $WALLET 5$E12 1
+$EVENT protocol KvcmLPStaking LpStaked $KVcmK2LP 1 $WALLET 6$E18 2
+$EVENT protocol KvcmLPStaking LpStaked $KVcmK2LP 9 $WALLET 6$E18 3
+$EVENT protocol KvcmLPStaking LpStakeUpdated $KVcmK2LP 25 $WALLET 6$E18 4
+$EVENT protocol KvcmLPStaking LpStaked $KVcmUsdcLP 12 $WALLET 4$E12 5
+$EVENT protocol KvcmLPStaking LpStaked $KVcmUsdcLP 12 $WALLET 4$E12 6 
+$EVENT protocol KvcmLPStaking LpStakeUnstaked $KVcmUsdcLP 12 $WALLET 4$E12 7
 
-$EVENT protocol KlimaStaking KVCMLocked $WALLET 1 9$E18
-$EVENT protocol KlimaStaking KVCMLocked $WALLET 12 8$E18
-$EVENT protocol KlimaStaking KVCMLocked $WALLET 28 7$E18
-$EVENT protocol KlimaStaking KVCMLocked $WALLET 30 18$E18
-$EVENT protocol KlimaStaking KVCMUnlocked $WALLET 30 18$E18
+$EVENT protocol KvcmStaking KvcmLocked $WALLET 1 9$E18 0 1
+$EVENT protocol KvcmStaking KvcmLocked $WALLET 2 8$E18 0 12
+$EVENT protocol KvcmStaking KvcmLocked $WALLET 3 7$E18 0 28 
+$EVENT protocol KvcmStaking KvcmLocked $WALLET 4 18$E18 0 30
+$EVENT protocol KvcmStaking KvcmUnlocked $WALLET 4 30 18$E18 0 0
 
-$EVENT protocol KlimaXStaking K2Staked $WALLET 18$E18
-$EVENT protocol KlimaXStaking K2UnstakeRequested $WALLET 3$E18
+$EVENT protocol K2Staking K2Locked $WALLET 18$E18 1 1
+$EVENT protocol K2Staking K2UnlockRequested $WALLET 3$E18 $NOW
 
 # Allocate bonds: bondId carbonClass amount
-$EVENT protocol KlimaStaking KVCMLockAllocated $WALLET 1 $CLASS1 4$E18
-$EVENT protocol KlimaStaking KVCMLockAllocated $WALLET 12 $CLASS2 5$E18
-$EVENT protocol KlimaStaking KVCMLockAllocated $WALLET 28 $CLASS2 5$E18
-$EVENT protocol KlimaStaking KVCMLockDeallocated $WALLET 28 $CLASS2 4$E18
-$EVENT protocol KlimaStaking KVCMLockReallocated $WALLET 28 $CLASS2 $CLASS1 2$E18
+$EVENT protocol KvcmStaking KvcmLockAllocated $WALLET 1 $CLASS1 4$E18
+$EVENT protocol KvcmStaking KvcmLockAllocated $WALLET 12 $CLASS2 5$E18
+$EVENT protocol KvcmStaking KvcmLockAllocated $WALLET 28 $CLASS2 5$E18
+$EVENT protocol KvcmStaking KvcmLockDeallocated $WALLET 28 $CLASS2 4$E18
+$EVENT protocol KvcmStaking KvcmLockReallocated $WALLET 28 $CLASS2 $CLASS1 2$E18
 
-$EVENT protocol KlimaXStaking K2LockAllocated $WALLET $CLASS1 15$E18
-$EVENT protocol KlimaXStaking K2LockDeallocated $WALLET $CLASS1 5$E18
-$EVENT protocol KlimaXStaking K2LockReallocated $WALLET $CLASS1 $CLASS2 4$E18
+$EVENT protocol K2Staking K2Allocated $WALLET 15$E18 $CLASS1
+$EVENT protocol K2Staking K2Deallocated $WALLET 5$E18 $CLASS1 
+$EVENT protocol K2Staking K2Reallocated $WALLET 4$E18 $CLASS1 $CLASS2
 
 # Swaps sender to amount0In amount1In amount0Out amount1Out
 $EVENT protocol KVcmUsdcLP Swap $WALLET $OTHERWALLET 22$E18 0 0 10$E6
@@ -86,18 +86,18 @@ NINETY_DAYS=$(( 90 * 24 * 60 * 60))
 MATURITY_0_TS=$(( $NOW - 92 * 24 * 60 * 60))
 
 # 1-40
-for i in $(seq 1 40); do
-  TS=$(( MATURITY_0_TS + NINETY_DAYS * i ))
-  $EVENT protocol MaturityManager MaturityAdded $TS $i
+#for i in $(seq 1 40); do
+#  TS=$(( MATURITY_0_TS + NINETY_DAYS * i ))
+#  $EVENT protocol MaturityManager MaturityAdded $TS $i
 
   # Update yield data
-  MUL=1$E9
-  UNSCALED_BOND_ISSUE=$(( (300 + i) * MUL ))
-  DISCOUNT_FACTOR=$(( (((100 - i) * MUL) / 100) * MUL ))
-  ZERO_COUPON_YIELD_CURVE=$(( (((30 + i) * MUL) / 1000) * MUL  ))
-  $EVENT protocol RollUpdate SyntheticYieldCurveUpdated $i $DISCOUNT_FACTOR $ZERO_COUPON_YIELD_CURVE $UNSCALED_BOND_ISSUE
-  $EVENT protocol RollUpdate RiskyYieldCurveUpdated $i $DISCOUNT_FACTOR $ZERO_COUPON_YIELD_CURVE $UNSCALED_BOND_ISSUE
-done
+#  MUL=1$E9
+#  UNSCALED_BOND_ISSUE=$(( (300 + i) * MUL ))
+#  DISCOUNT_FACTOR=$(( (((100 - i) * MUL) / 100) * MUL ))
+#  ZERO_COUPON_YIELD_CURVE=$(( (((30 + i) * MUL) / 1000) * MUL  ))
+#  $EVENT protocol RollUpdate SyntheticYieldCurveUpdated $i $DISCOUNT_FACTOR $ZERO_COUPON_YIELD_CURVE $UNSCALED_BOND_ISSUE
+#  $EVENT protocol RollUpdate RiskyYieldCurveUpdated $i $DISCOUNT_FACTOR $ZERO_COUPON_YIELD_CURVE $UNSCALED_BOND_ISSUE
+#done
 
 $EVENT protocol MaturityManager MaxMaturityIdUpdated 2 41
 
@@ -175,14 +175,14 @@ $EVENT protocol RewardManager K2YieldForKVCMMinted $WALLET $MATURITY $MIDNIGHT 1
 
 # Shares minting maturity 2
 MATURITY=2
-$EVENT protocol KlimaStaking LpStaked $WALLET $MATURITY $KVcmK2LP 600$E18
+$EVENT protocol KvcmLPStaking LpStaked $KVcmK2LP $MATURITY $WALLET 600$E18 10
 $EVENT protocol RewardManager RiskyYieldLPSharesMinted $WALLET $MATURITY $KVcmK2LP $MIDNIGHT 10$E18 13$E18
 $EVENT protocol RewardManager K2YieldLPSharesMinted $WALLET $MATURITY $KVcmK2LP $MIDNIGHT 10$E18 13$E18
 
-$EVENT protocol KlimaStaking LpStaked $WALLET $MATURITY $KVcmUsdcLP 500$E12
+$EVENT protocol KvcmLPStaking LpStaked $KVcmUsdcLP $MATURITY $WALLET 500$E12 20
 $EVENT protocol RewardManager RiskyYieldLPSharesMinted $WALLET $MATURITY $KVcmUsdcLP $MIDNIGHT 10$E18 15$E18
 
-$EVENT protocol KlimaStaking KVCMLocked $WALLET 2 900$E18
+$EVENT protocol KvcmStaking KvcmLocked $WALLET 1 900$E18 0 $MATURITY
 $EVENT protocol RewardManager SyntheticYieldForKVCMMinted $WALLET $MATURITY $MIDNIGHT 15$E18
 $EVENT protocol RewardManager K2YieldForKVCMMinted $WALLET $MATURITY $MIDNIGHT 15$E18 14$E18
 
@@ -216,8 +216,8 @@ $EVENT protocol K2 Transfer $ZERO $WALLET 3$E18
 $EVENT protocol KVcm Transfer $ZERO $WALLET 4$E18
 
 # change TVL
-$EVENT protocol KlimaStaking KVCMLocked $WALLET 9 2$E18
-$EVENT protocol KlimaXStaking K2Staked $WALLET 4$E18
+$EVENT protocol KvcmStaking KvcmLocked $WALLET 1 2$E18 9 0
+$EVENT protocol K2Staking K2Locked $WALLET 4$E18 1 1
 
 # CarbonSwaps carbonClass quoter tokenId tonnageAmount klimaAmount recipient
 $EVENT protocol Operations CarbonSwap $CLASS1 $OTHERWALLET 0 200$E18 200$E18 $WALLET
