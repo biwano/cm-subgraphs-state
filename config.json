@@ -11,6 +11,8 @@
         "Operations",
         "MaturityManager",
         "RollUpdate",
+        "RiskyYield",
+        "K2Yield",
         "RewardManager",
         "StakingManagerPause"
       ],
@@ -65,10 +67,25 @@
           "contractName": "MaturityManager",
           "address": "0x651bfbc6cb08c12dec8c58b6877c5b26dcc533c1"
         },
+        "RollUpdateOld": {
+          "alias": "RollUpdateOld",
+          "contractName": "RollUpdateOld",
+          "address": "0xE6525E4d1982fb8a29dA81C5CfB3C0201e8f121b"
+        },
         "RollUpdate": {
           "alias": "RollUpdate",
           "contractName": "RollUpdate",
           "address": "0x434b18ab0c03df5f4c4a22cf591e0bf965c2fc14"
+        },
+        "RiskyYield": {
+          "alias": "RiskyYield",
+          "contractName": "RiskyYield",
+          "address": "0x6ce45d2ee35c0d114cede7f894065f8533099244"
+        },
+        "K2Yield": {
+          "alias": "K2Yield",
+          "contractName": "K2Yield",
+          "address": "0xb45cad726957e8accbf6150a759270638159ceb1"
         },
         "RewardManager": {
           "alias": "RewardManager",
@@ -82,7 +99,7 @@
         }
       },
       "active": true,
-      "graphql_url": "http://localhost:8000/subgraphs/id/QmVeE9EbgRJaefRgQRrwBZcULbPEuhJC6nTaseSG5ihcA5"
+      "graphql_url": "http://localhost:8000/subgraphs/id/QmT1woWNFKWDPcX3q1ZJBXrVJGL6joFbuTGLrcZjnf4drH"
     },
     "carbon": {
       "subgraph_path": "../cm-subgraphs/graphs/carbon/",
@@ -96,6 +113,11 @@
           "alias": "CreditManager",
           "contractName": "CreditManager",
           "address": "0x3f4b2c1D9f953D0b4062a28070ef27F8e2Dfdcf9"
+        },
+        "TestCreditToken": {
+          "alias": "TestCreditToken",
+          "contractName": "TestCreditToken",
+          "address": "0xc87c66a5aa13c9a26be8cbedbb9b3d0da950296e"
         },
         "ToucanBridge": {
           "alias": "ToucanBridge",
@@ -116,20 +138,10 @@
           "alias": "PuroToucanCarbonOffsetsFactory",
           "contractName": "PuroToucanCarbonOffsetsFactory",
           "address": "0xe13f4ce3e7d06a53848abf7a88658ca5f00dbcbd"
-        },
-        "CMARK_1_2025": {
-          "alias": "CMARK_1_2025",
-          "contractName": "CmarkCreditToken",
-          "address": "0xc87c66a5aa13c9a26be8cbedbb9b3d0da950296e"
-        },
-        "TCO2_1_2024": {
-          "alias": "TCO2_1_2024",
-          "contractName": "CmarkCreditToken",
-          "address": "0x7329813fa76f152a5e5421243827decfb5358b08"
         }
       },
       "active": true,
-      "graphql_url": "http://localhost:8000/subgraphs/id/QmRTRjUyMcoXqYUyBm95FU69v7wZJeayHUBNAiFG9whDbj"
+      "graphql_url": "http://localhost:8000/subgraphs/id/QmSPWyM8sSt5K84E3FQQpKZcnyuKABEy8KP4AZk5PLqWjC"
     }
   }
 }

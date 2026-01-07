@@ -42,10 +42,11 @@ $EVENT protocol KvcmLPStaking LpStaked $KVcmUsdcLP 12 $WALLET 4$E12 5
 $EVENT protocol KvcmLPStaking LpStaked $KVcmUsdcLP 12 $WALLET 4$E12 6 
 $EVENT protocol KvcmLPStaking LpStakeUnstaked $KVcmUsdcLP 12 $WALLET 4$E12 7
 
-$EVENT protocol KvcmStaking KvcmLocked $WALLET 1 9$E18 0 1
-$EVENT protocol KvcmStaking KvcmLocked $WALLET 2 8$E18 0 12
-$EVENT protocol KvcmStaking KvcmLocked $WALLET 3 7$E18 0 28 
-$EVENT protocol KvcmStaking KvcmLocked $WALLET 4 18$E18 0 30
+$EVENT protocol KvcmStaking KvcmLocked $WALLET 1 9$E18 91 1
+$EVENT protocol KvcmStaking KvcmLocked $WALLET 1 4$E18 91 1
+$EVENT protocol KvcmStaking KvcmLocked $WALLET 2 8$E18 91 12
+$EVENT protocol KvcmStaking KvcmLocked $WALLET 3 7$E18 91 28 
+$EVENT protocol KvcmStaking KvcmLocked $WALLET 4 18$E18 91 30
 $EVENT protocol KvcmStaking KvcmUnlocked $WALLET 4 30 18$E18 0 0
 
 $EVENT protocol K2Staking K2Locked $WALLET 18$E18 1 1
@@ -101,63 +102,49 @@ MATURITY_0_TS=$(( $NOW - 92 * 24 * 60 * 60))
 
 $EVENT protocol MaturityManager MaxMaturityIdUpdated 2 41
 
+# Function to generate accumulator update events for a midnight and maturity
+generate_accumulator_updates() {
+  local MIDNIGHT=$1
+  local MATURITY=$2
+  local ACCUMULATOR_VALUE=$3
+  local PPS=$4
+  
+  # RollUpdate event
+  $EVENT protocol RollUpdate MaturityRollSettled $MIDNIGHT $MATURITY 18$E18 $PPS 17$E18 
+  
+  # K2Yield accumulator updates
+  $EVENT protocol K2Yield LPK2YieldAccumulatorUpdated $KVcmK2LP $MIDNIGHT $MATURITY $ACCUMULATOR_VALUE
+  $EVENT protocol K2Yield K2StakersK2YieldAccumulatorUpdated $MIDNIGHT $ACCUMULATOR_VALUE
+  $EVENT protocol K2Yield KVCMK2YieldAccumulatorUpdated $MIDNIGHT $MATURITY $ACCUMULATOR_VALUE
+  
+  # RiskyYield accumulator updates
+  $EVENT protocol RiskyYield LPRiskyYieldAccumulatorUpdated $KVcmK2LP $MIDNIGHT $MATURITY $ACCUMULATOR_VALUE
+  $EVENT protocol RiskyYield LPRiskyYieldAccumulatorUpdated $KVcmUsdcLP $MIDNIGHT $MATURITY $ACCUMULATOR_VALUE
+  $EVENT protocol RiskyYield K2StakersRYAccumulatorUpdated $MIDNIGHT $ACCUMULATOR_VALUE
+}
+
 # Midnight roll maturity 1 - midnight 89
 MIDNIGHT=89
 MATURITY=1
-$EVENT protocol RollUpdate KVCMMaturityRollSettled $MATURITY $MIDNIGHT 1$E18 2000000000$E9 100$E18
-$EVENT protocol RollUpdate K2YieldDistributedForLPs $MATURITY $KVcmK2LP $MIDNIGHT 1000000000$E9 10$E18
-$EVENT protocol RollUpdate K2YieldDistributedForK2 $MIDNIGHT 1000000000$E9 15$E18
-$EVENT protocol RollUpdate K2YieldDistributedForKVCM $MATURITY $MIDNIGHT 1000000000$E9 12$E18
-
-$EVENT protocol RollUpdate RiskyYieldDistributedForLPs $MATURITY $KVcmK2LP $MIDNIGHT 1000000000$E9 10$E18
-$EVENT protocol RollUpdate RiskyYieldDistributedForLPs $MATURITY $KVcmUsdcLP $MIDNIGHT 1000000000$E9 11$E18
-$EVENT protocol RollUpdate RiskyYieldDistributedForK2 $MIDNIGHT 1000000000$E9 15$E18
+generate_accumulator_updates $MIDNIGHT $MATURITY 1000000000$E9 1$E18
 
 # Midnight roll maturity 1 - midnight 90 = maturity 1 ends
 MIDNIGHT=90
-$EVENT protocol RollUpdate KVCMMaturityRollSettled $MATURITY $MIDNIGHT 1$E18 2000100000$E9 100$E18
-$EVENT protocol RollUpdate K2YieldDistributedForLPs $MATURITY $KVcmK2LP $MIDNIGHT 1000110000$E9 10$E18
-$EVENT protocol RollUpdate K2YieldDistributedForK2 $MIDNIGHT 1000120000$E9 15$E18
-$EVENT protocol RollUpdate K2YieldDistributedForKVCM $MATURITY $MIDNIGHT 1000130000$E9 12$E18
-
-$EVENT protocol RollUpdate RiskyYieldDistributedForLPs $MATURITY $KVcmK2LP $MIDNIGHT 1000100000$E9 10$E18
-$EVENT protocol RollUpdate RiskyYieldDistributedForLPs $MATURITY $KVcmUsdcLP $MIDNIGHT 1000200000$E9 11$E18
-$EVENT protocol RollUpdate RiskyYieldDistributedForK2 $MIDNIGHT 1000300000$E9 15$E18
+generate_accumulator_updates $MIDNIGHT $MATURITY 1000100000$E9 1$E18
 
 # Midnight roll maturity 1 - midnight 91 = Another one so midnight 0 is not latest
 MIDNIGHT=91
-$EVENT protocol RollUpdate KVCMMaturityRollSettled $MATURITY $MIDNIGHT 1$E18 2000200000$E9 100$E18
-$EVENT protocol RollUpdate K2YieldDistributedForLPs $MATURITY $KVcmK2LP $MIDNIGHT 1000220000$E9 10$E18
-$EVENT protocol RollUpdate K2YieldDistributedForK2 $MIDNIGHT 1000230000$E9 15$E18
-$EVENT protocol RollUpdate K2YieldDistributedForKVCM $MATURITY $MIDNIGHT 1000230000$E9 12$E18
-
-$EVENT protocol RollUpdate RiskyYieldDistributedForLPs $MATURITY $KVcmK2LP $MIDNIGHT 1000200000$E9 10$E18
-$EVENT protocol RollUpdate RiskyYieldDistributedForLPs $MATURITY $KVcmUsdcLP $MIDNIGHT 1000400000$E9 11$E18
-$EVENT protocol RollUpdate RiskyYieldDistributedForK2 $MIDNIGHT 1000600000$E9 15$E18
+generate_accumulator_updates $MIDNIGHT $MATURITY 1000200000$E9 1$E18
 
 # Midnight roll maturity 2 - midnight 90 
 MIDNIGHT=90
 MATURITY=2
-$EVENT protocol RollUpdate KVCMMaturityRollSettled $MATURITY $MIDNIGHT 1$E18 2000100000$E9 100$E18
-$EVENT protocol RollUpdate K2YieldDistributedForLPs $MATURITY $KVcmK2LP $MIDNIGHT 1000210000$E9 10$E18
-$EVENT protocol RollUpdate K2YieldDistributedForK2 $MIDNIGHT 1000220000$E9 15$E18
-$EVENT protocol RollUpdate K2YieldDistributedForKVCM $MATURITY $MIDNIGHT 1000220000$E9 12$E18
-
-$EVENT protocol RollUpdate RiskyYieldDistributedForLPs $MATURITY $KVcmK2LP $MIDNIGHT 1000000000$E9 10$E18
-$EVENT protocol RollUpdate RiskyYieldDistributedForLPs $MATURITY $KVcmUsdcLP $MIDNIGHT 1000000000$E9 11$E18
-$EVENT protocol RollUpdate RiskyYieldDistributedForK2 $MIDNIGHT 1000000000$E9 15$E18
+generate_accumulator_updates $MIDNIGHT $MATURITY 10001500000$E9 1$E18
 
 # Midnight roll maturity 2 - midnight 91 
 MIDNIGHT=91
 MATURITY=2
-$EVENT protocol RollUpdate KVCMMaturityRollSettled $MATURITY $MIDNIGHT 1$E18 2000200000$E9 100$E18
-$EVENT protocol RollUpdate K2YieldDistributedForLPs $MATURITY $KVcmK2LP $MIDNIGHT 1000220000$E9 10$E18
-$EVENT protocol RollUpdate K2YieldDistributedForK2 $MIDNIGHT 1000230000$E9 15$E18
-$EVENT protocol RollUpdate K2YieldDistributedForKVCM $MATURITY $MIDNIGHT 1000230000$E9 12$E18
-
-$EVENT protocol RollUpdate RiskyYieldDistributedForLPs $MATURITY $KVcmK2LP $MIDNIGHT 1000200000$E9 10$E18
-$EVENT protocol RollUpdate RiskyYieldDistributedForLPs $MATURITY $KVcmUsdcLP $MIDNIGHT 1000400000$E9 11$E18
-$EVENT protocol RollUpdate RiskyYieldDistributedForK2 $MIDNIGHT 1000600000$E9 15$E18
+generate_accumulator_updates $MIDNIGHT $MATURITY 10002500000$E9 1$E18
 
 # Shares minting maturity 1
 MIDNIGHT=89
@@ -182,7 +169,7 @@ $EVENT protocol RewardManager K2YieldLPSharesMinted $WALLET $MATURITY $KVcmK2LP 
 $EVENT protocol KvcmLPStaking LpStaked $KVcmUsdcLP $MATURITY $WALLET 500$E12 20
 $EVENT protocol RewardManager RiskyYieldLPSharesMinted $WALLET $MATURITY $KVcmUsdcLP $MIDNIGHT 10$E18 15$E18
 
-$EVENT protocol KvcmStaking KvcmLocked $WALLET 1 900$E18 0 $MATURITY
+$EVENT protocol KvcmStaking KvcmLocked $WALLET 1 900$E18 91 $MATURITY
 $EVENT protocol RewardManager SyntheticYieldForKVCMMinted $WALLET $MATURITY $MIDNIGHT 15$E18
 $EVENT protocol RewardManager K2YieldForKVCMMinted $WALLET $MATURITY $MIDNIGHT 15$E18 14$E18
 
@@ -216,7 +203,7 @@ $EVENT protocol K2 Transfer $ZERO $WALLET 3$E18
 $EVENT protocol KVcm Transfer $ZERO $WALLET 4$E18
 
 # change TVL
-$EVENT protocol KvcmStaking KvcmLocked $WALLET 1 2$E18 9 0
+$EVENT protocol KvcmStaking KvcmLocked $WALLET 1 2$E18 91 0
 $EVENT protocol K2Staking K2Locked $WALLET 4$E18 1 1
 
 # CarbonSwaps carbonClass quoter tokenId tonnageAmount klimaAmount recipient

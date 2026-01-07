@@ -12,8 +12,9 @@ DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 source $DIR/constants.sh
 
 # Issue CMARK-1-2025
-CMARK_1_2025_ADDRESS=$($DEPLOY_TEMPLATE carbon CmarkCreditToken CMARK_1_2025 --address 0xc87c66a5aa13c9a26be8cbedbb9b3d0da950296e)
-$EVENT carbon CmarkFactory Issued CMARK-1-2025 1000$E18 $WHALEWALLET $CMARK_1_2025_ADDRESS CMARK-1-2025-PROV
+#CMARK_1_2025_ADDRESS=$($DEPLOY_TEMPLATE carbon CmarkCreditToken CMARK_1_2025 --address 0xc87c66a5aa13c9a26be8cbedbb9b3d0da950296e)
+CMARK_1_2025_ADDRESS=$($DEPLOY_TEMPLATE carbon CmarkCreditToken CMARK_1_2025 --address 0xc87c66a5aa13c9a26be8cbedbb9b3d0da950296e --force)
+#$EVENT carbon CmarkFactory Issued CMARK-1-2025 1000$E18 $WHALEWALLET $CMARK_1_2025_ADDRESS CMARK-1-2025-PROV
 $EVENT carbon CMARK_1_2025 Transfer $ZERO $WHALEWALLET 1000$E18 
 $EVENT carbon CMARK_1_2025 Transfer $WHALEWALLET $WALLET 300$E18 
 
