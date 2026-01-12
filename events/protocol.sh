@@ -86,22 +86,6 @@ NINETY_DAYS=$(( 90 * 24 * 60 * 60))
 # 0
 MATURITY_0_TS=$(( $NOW - 92 * 24 * 60 * 60))
 
-# 1-40
-#for i in $(seq 1 40); do
-#  TS=$(( MATURITY_0_TS + NINETY_DAYS * i ))
-#  $EVENT protocol MaturityManager MaturityAdded $TS $i
-
-  # Update yield data
-#  MUL=1$E9
-#  UNSCALED_BOND_ISSUE=$(( (300 + i) * MUL ))
-#  DISCOUNT_FACTOR=$(( (((100 - i) * MUL) / 100) * MUL ))
-#  ZERO_COUPON_YIELD_CURVE=$(( (((30 + i) * MUL) / 1000) * MUL  ))
-#  $EVENT protocol RollUpdate SyntheticYieldCurveUpdated $i $DISCOUNT_FACTOR $ZERO_COUPON_YIELD_CURVE $UNSCALED_BOND_ISSUE
-#  $EVENT protocol RollUpdate RiskyYieldCurveUpdated $i $DISCOUNT_FACTOR $ZERO_COUPON_YIELD_CURVE $UNSCALED_BOND_ISSUE
-#done
-
-$EVENT protocol MaturityManager MaxMaturityIdUpdated 2 41
-
 # Function to generate accumulator update events for a midnight and maturity
 generate_accumulator_updates() {
   local MIDNIGHT=$1
@@ -114,7 +98,7 @@ generate_accumulator_updates() {
   
   # K2Yield accumulator updates
   $EVENT protocol K2Yield LPK2YieldAccumulatorUpdated $KVcmK2LP $MIDNIGHT $MATURITY $ACCUMULATOR_VALUE
-  $EVENT protocol K2Yield K2StakersK2YieldAccumulatorUpdated $MIDNIGHT $ACCUMULATOR_VALUE
+  $EVENT protocol K2Yield K2StakersK2YieldAccumulatorUpdated $MIDNIGHT $ACCUMULATOR_VALUE$E3
   $EVENT protocol K2Yield KVCMK2YieldAccumulatorUpdated $MIDNIGHT $MATURITY $ACCUMULATOR_VALUE
   
   # RiskyYield accumulator updates
@@ -123,28 +107,43 @@ generate_accumulator_updates() {
   $EVENT protocol RiskyYield K2StakersRYAccumulatorUpdated $MIDNIGHT $ACCUMULATOR_VALUE
 }
 
-# Midnight roll maturity 1 - midnight 89
-MIDNIGHT=89
-MATURITY=1
-generate_accumulator_updates $MIDNIGHT $MATURITY 1000000000$E9 1$E18
+# 1-40
+for i in $(seq 1 40); do
+  TS=$(( MATURITY_0_TS + NINETY_DAYS * i ))
+  $EVENT protocol MaturityManager MaturityAdded $TS $i
 
-# Midnight roll maturity 1 - midnight 90 = maturity 1 ends
-MIDNIGHT=90
-generate_accumulator_updates $MIDNIGHT $MATURITY 1000100000$E9 1$E18
+  # Generate accumulator updates for midnights 89, 90, 91
+  # Base accumulator increases by 0.1% per maturity
+  BASE_ACCUMULATOR_VALUE=1000000000
+  BASE_ACCUMULATOR=$(awk "BEGIN {printf \"%.0f\", $BASE_ACCUMULATOR_VALUE * (1.001^($i-1))}")
+  
+  # Accumulator increases by 0.1% at each midnight index
+  ACCUMULATOR_89=$(awk "BEGIN {printf \"%.0f\", $BASE_ACCUMULATOR}")
+  ACCUMULATOR_90=$(awk "BEGIN {printf \"%.0f\", $BASE_ACCUMULATOR * 1.001}")
+  ACCUMULATOR_91=$(awk "BEGIN {printf \"%.0f\", $BASE_ACCUMULATOR * 1.001 * 1.001}")
+  
+  # Base PPS increases by 0.1% per maturity
+  BASE_PPS_VALUE=1$E18
+  BASE_PPS=$(awk "BEGIN {printf \"%.0f\", $BASE_PPS_VALUE * (1.001^($i-1))}")
+  
+  # PPS difference between midnights increases per maturity: maturity 1 = 0.11%, maturity 2 = 0.12%, etc.
+  PPS_MIDNIGHT_INCREASE=$(awk "BEGIN {printf \"%.6f\", 1.0011 + ($i-1) * 0.0001}")
+  PPS_89=$(awk "BEGIN {printf \"%.0f\", $BASE_PPS}")
+  PPS_90=$(awk "BEGIN {printf \"%.0f\", $BASE_PPS * $PPS_MIDNIGHT_INCREASE}")
+  PPS_91=$(awk "BEGIN {printf \"%.0f\", $BASE_PPS * $PPS_MIDNIGHT_INCREASE * $PPS_MIDNIGHT_INCREASE}")
+  
+  # Midnight 89
+  generate_accumulator_updates 89 $i ${ACCUMULATOR_89}$E9 ${PPS_89}
+  
+  # Midnight 90
+  generate_accumulator_updates 90 $i ${ACCUMULATOR_90}$E9 ${PPS_90}
+  
+  # Midnight 91
+  generate_accumulator_updates 91 $i ${ACCUMULATOR_91}$E9 ${PPS_91}
+  
+done
 
-# Midnight roll maturity 1 - midnight 91 = Another one so midnight 0 is not latest
-MIDNIGHT=91
-generate_accumulator_updates $MIDNIGHT $MATURITY 1000200000$E9 1$E18
-
-# Midnight roll maturity 2 - midnight 90 
-MIDNIGHT=90
-MATURITY=2
-generate_accumulator_updates $MIDNIGHT $MATURITY 10001500000$E9 1$E18
-
-# Midnight roll maturity 2 - midnight 91 
-MIDNIGHT=91
-MATURITY=2
-generate_accumulator_updates $MIDNIGHT $MATURITY 10002500000$E9 1$E18
+$EVENT protocol MaturityManager MaxMaturityIdUpdated 2 41
 
 # Shares minting maturity 1
 MIDNIGHT=89
@@ -157,7 +156,7 @@ $EVENT protocol RewardManager RiskyYieldLPSharesMinted $WALLET $MATURITY $KVcmUs
 $EVENT protocol RewardManager RiskyYieldK2SharesMinted $WALLET $MIDNIGHT 12$E18 21$E18
 $EVENT protocol RewardManager K2YieldK2SharesMinted $WALLET $MIDNIGHT 10$E18 18$E18
 
-$EVENT protocol RewardManager SyntheticYieldForKVCMMinted $WALLET $MATURITY $MIDNIGHT 6$E18 
+$EVENT protocol KvcmIncentiveCurve LockUpdated $WALLET 1 $MATURITY 6$E18 0 $MIDNIGHT 
 $EVENT protocol RewardManager K2YieldForKVCMMinted $WALLET $MATURITY $MIDNIGHT 15$E18 5$E18
 
 # Shares minting maturity 2
@@ -170,25 +169,24 @@ $EVENT protocol KvcmLPStaking LpStaked $KVcmUsdcLP $MATURITY $WALLET 500$E12 20
 $EVENT protocol RewardManager RiskyYieldLPSharesMinted $WALLET $MATURITY $KVcmUsdcLP $MIDNIGHT 10$E18 15$E18
 
 $EVENT protocol KvcmStaking KvcmLocked $WALLET 1 900$E18 91 $MATURITY
-$EVENT protocol RewardManager SyntheticYieldForKVCMMinted $WALLET $MATURITY $MIDNIGHT 15$E18
+$EVENT protocol KvcmIncentiveCurve LockUpdated $WALLET 1 $MATURITY 15$E18 0 $MIDNIGHT 
 $EVENT protocol RewardManager K2YieldForKVCMMinted $WALLET $MATURITY $MIDNIGHT 15$E18 14$E18
 
 # Yield settling for K2
 MIDNIGHT=90
-$EVENT protocol RewardManager K2YieldForK2Settled $WALLET $MIDNIGHT 11$E18 20$E18
-$EVENT protocol RewardManager RiskyYieldForK2Settled $WALLET $MIDNIGHT 9$E18 17$E18
+$EVENT protocol RewardManager K2YieldK2SharesMinted $WALLET $MIDNIGHT 11$E18 20$E18
+$EVENT protocol RewardManager RiskyYieldK2SharesMinted $WALLET $MIDNIGHT 9$E18 17$E18
 
 # Shares claiming (maturity)
-$EVENT protocol RewardManager RiskyYieldForLPClaimed $WALLET $MATURITY $KVcmK2LP 1$E18
-$EVENT protocol RewardManager K2YieldForLPClaimed $WALLET $MATURITY $KVcmK2LP 10$E18
-
-$EVENT protocol RewardManager RiskyYieldForLPClaimed $WALLET $MATURITY $KVcmUsdcLP 1$E18
+$EVENT protocol RMLPRewards LPRYieldTransferred $KVcmK2LP $MATURITY $WALLET 1$E18
+$EVENT protocol RMLPRewards LPK2YieldTransferred $KVcmK2LP $MATURITY $WALLET 10$E18
+$EVENT protocol RMLPRewards LPRYieldTransferred $KVcmUsdcLP $MATURITY $WALLET 1$E18
 
 $EVENT protocol RewardManager RiskyYieldForK2Claimed $WALLET 2$E18
 $EVENT protocol RewardManager K2YieldForK2Claimed $WALLET 3$E18
 
-$EVENT protocol RewardManager SyntheticYieldForKVCMClaimed $WALLET $MATURITY 1$E18
-$EVENT protocol RewardManager K2YieldForKVCMClaimed $WALLET $MATURITY 4$E18
+$EVENT protocol KvcmIncentiveCurve LockUpdated $WALLET 1 $MATURITY 1$E18 0 $MIDNIGHT 
+$EVENT protocol RMKVCMStakersRewards KVCMK2YieldTransferred $MATURITY $WALLET 4$E18
 
 
 ######### TokenSnapshots #########

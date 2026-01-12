@@ -14,6 +14,8 @@
         "RiskyYield",
         "K2Yield",
         "RewardManager",
+        "KvcmIncentiveCurve",
+        "RMKVCMStakersRewards",
         "StakingManagerPause"
       ],
       "contracts": {
@@ -21,6 +23,11 @@
           "alias": "KvcmStaking",
           "contractName": "KvcmStaking",
           "address": "0x2f900ec0e59f1f9854235d9e413ee6be9ae1ed16"
+        },
+        "KvcmIncentiveCurve": {
+          "alias": "KvcmIncentiveCurve",
+          "contractName": "KvcmIncentiveCurve",
+          "address": "0xfbdf0abeba4f60f89b2168aaa3057152c85ada6b"
         },
         "KvcmLPStaking": {
           "alias": "KvcmLPStaking",
@@ -67,11 +74,6 @@
           "contractName": "MaturityManager",
           "address": "0x651bfbc6cb08c12dec8c58b6877c5b26dcc533c1"
         },
-        "RollUpdateOld": {
-          "alias": "RollUpdateOld",
-          "contractName": "RollUpdateOld",
-          "address": "0xE6525E4d1982fb8a29dA81C5CfB3C0201e8f121b"
-        },
         "RollUpdate": {
           "alias": "RollUpdate",
           "contractName": "RollUpdate",
@@ -92,6 +94,16 @@
           "contractName": "RewardManager",
           "address": "0xa9aeed1e8c44deec8d59f1be6b97713eb12b0627"
         },
+        "RMLPRewards": {
+          "alias": "RMLPRewards",
+          "contractName": "RMLPRewards",
+          "address": "0xE6525E4d1982fb8a29dA81C5CfB3C0201e8f121b"
+        },
+        "RMKVCMStakersRewards": {
+          "alias": "RMKVCMStakersRewards",
+          "contractName": "RMKVCMStakersRewards",
+          "address": "0xfb51a289ff729ed841b45a39e332923ee937b306"
+        },
         "StakingManagerPause": {
           "alias": "StakingManagerPause",
           "contractName": "StakingManagerPause",
@@ -99,7 +111,7 @@
         }
       },
       "active": true,
-      "graphql_url": "http://localhost:8000/subgraphs/id/QmT1woWNFKWDPcX3q1ZJBXrVJGL6joFbuTGLrcZjnf4drH"
+      "graphql_url": "http://localhost:8000/subgraphs/id/QmNrgcJnkEBE7yAadyRGorj8YSLyRJ6excZcTM2WhrLNzF"
     },
     "carbon": {
       "subgraph_path": "../cm-subgraphs/graphs/carbon/",
@@ -138,6 +150,16 @@
           "alias": "PuroToucanCarbonOffsetsFactory",
           "contractName": "PuroToucanCarbonOffsetsFactory",
           "address": "0xe13f4ce3e7d06a53848abf7a88658ca5f00dbcbd"
+        },
+        "CMARK_1_2025": {
+          "alias": "CMARK_1_2025",
+          "contractName": "CmarkCreditToken",
+          "address": "0xc87c66a5aa13c9a26be8cbedbb9b3d0da950296e"
+        },
+        "TCO2_1_2024": {
+          "alias": "TCO2_1_2024",
+          "contractName": "CmarkCreditToken",
+          "address": "0x7329813fa76f152a5e5421243827decfb5358b08"
         }
       },
       "active": true,
